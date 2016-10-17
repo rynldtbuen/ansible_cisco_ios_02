@@ -1,0 +1,18 @@
+---
+vlans:
+  - id: 15
+    name: voice1
+  - id: 16
+    name: voice2
+  - id: 17
+    name: voice3
+  - id: 18
+    name: voice4
+  - id: 55
+    name: data1
+  - id: 56
+    name: data2
+  - id: 57
+    name: data3
+  - id: 18
+    name: data4

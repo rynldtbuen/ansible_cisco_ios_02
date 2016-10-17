@@ -1,0 +1,58 @@
+---
+  # 
+- name: configure eigrp
+  ios_config:
+    provider: "{{ provider }}"
+    lines:
+    - no auto
+    - network 10.0.0.0 0.0.255.255
+    - passive-interface default
+    parents: router eigrp 1
+    match: exact
+  # 
+- name: passive-interface - svi
+  ios_config:
+    provider: "{{ provider }}"
+    lines:
+    - no passive-interface {{ item.int }}
+    parents: router eigrp 1
+    match: exact
+    
+  with_items: "{{ svi }}"  
+  when: (ansible_hostname == "core_sw_01") or 
+        (ansible_hostname == "core_sw_02")
+
+  #
+- name: summary route
+  ios_config:
+    provider: "{{ provider }}"
+    lines:
+    - ip summary-address eigrp 1 10.0.0.0 255.255.224.0
+    - ip summary-address eigrp 1 10.0.32.0 255.255.224.0
+    parents: interface {{ item.int }}
+    match: exact
+  with_items: "{{ interfaces[ansible_hostname].ptp }}"
+  when: (ansible_hostname == "core_sw_01") or 
+        (ansible_hostname == "core_sw_02")
+
+  # 
+- name: passive-interface - ptp
+  ios_config:
+    provider: "{{ provider }}"
+    lines:
+    - no passive-interface {{ item.int }}
+    parents: router eigrp 1
+    match: exact
+  with_items: "{{ interfaces[ansible_hostname].ptp }}"
+
+  # 
+- name: redistribute
+  ios_config:
+    provider: "{{ provider }}"
+    lines:
+    - redistribute static
+    parents: router eigrp 1
+    match: exact
+  with_items: "{{ interfaces[ansible_hostname].ptp }}"
+  when: (ansible_hostname == "rtr_01") or 
+        (ansible_hostname == "rtr_02")

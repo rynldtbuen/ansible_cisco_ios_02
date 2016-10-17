@@ -1,0 +1,9 @@
+---
+- name: core and access switch configurations
+  hosts: switches
+  gather_facts: no
+  connection: local
+
+  roles:
+  - vlans
+  - trunk

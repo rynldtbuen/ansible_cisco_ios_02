@@ -1,0 +1,23 @@
+---
+# refer to https://docs.ansible.com/ansible/ios_facts_module.html for facts
+# enter a return values in prompt. example ansible_net_interfaces
+
+- name: router configurations
+  hosts: all
+  gather_facts: no
+  connection: local
+
+  vars_prompt:
+  - name: facts
+    prompt: "facts"
+    private: no
+  
+  
+  tasks:
+  - ios_facts:
+      provider: "{{ provider }}"
+      gather_subset:
+       - all
+  
+  - debug: var="{{ facts }}"
+  

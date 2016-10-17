@@ -1,0 +1,34 @@
+---
+ports:
+ acc_sw_01:
+ - range: "Ethernet0/0 - 1"
+   allowed:
+   - 15
+   - 55
+ acc_sw_02:
+ - range: "Ethernet0/0 - 1"
+   allowed:
+   - 16
+   - 56
+ acc_sw_03:
+ - range: "Ethernet0/0 - 1"
+   allowed:
+   - 17
+   - 57
+ acc_sw_04:
+ - range: "Ethernet0/0 - 1"
+   allowed:
+   - 18
+   - 58
+ core_sw_01:
+ - range: "Ethernet0/0 - 3"
+   allowed:
+   - 1-4094
+ core_sw_02:
+ - range: "Ethernet0/0 - 3"
+   allowed:
+   - 1-4094
+
+
+
+    

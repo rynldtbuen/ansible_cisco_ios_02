@@ -1,0 +1,6 @@
+---
+provider: 
+  host: "{{ ansible_hostname }}"
+  username: rey
+  password: cisco
+  transport: cli

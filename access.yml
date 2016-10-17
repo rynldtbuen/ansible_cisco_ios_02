@@ -1,0 +1,11 @@
+---
+- name: access switch configurations
+  hosts: access
+  gather_facts: no
+  connection: local
+
+  roles:
+#  - common
+#  - vlans
+  - access
+  - trunk

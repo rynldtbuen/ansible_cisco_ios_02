@@ -1,0 +1,34 @@
+---
+ #
+- name: configure ptp
+  ios_config:
+    provider: "{{ provider }}"
+    lines:
+    - no switchport
+    parents: interface {{ item.int }}
+  with_items:  "{{ interfaces[ansible_hostname].ptp }}"
+  when: (ansible_hostname == "core_sw_01") or
+        (ansible_hostname == "core_sw_02")
+
+- pause: seconds=5
+
+ #
+- name: configure ptp
+  ios_config:
+    provider: "{{ provider }}"
+    lines:
+    - description {{ item.desc }}
+    - ip address {{ item.ip_mask }}
+    parents: interface {{ item.int }}
+  with_items:  "{{ interfaces[ansible_hostname].ptp }}"
+  #
+- name: no shut
+  ios_config:
+    provider: "{{ provider }}"
+    lines:
+    - no shutdown
+    parents: interface {{ item.int }}
+  with_items:  "{{ interfaces[ansible_hostname].ptp }}"
+
+- pause: seconds=15
+

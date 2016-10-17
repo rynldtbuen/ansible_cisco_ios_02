@@ -1,0 +1,17 @@
+---
+- name: core configurations
+  hosts: core
+  gather_facts: no
+  connection: local
+  #
+  roles:
+#  - common
+#  - vlans
+  - trunk
+#  - svi
+#  - hsrp
+#  - interface # ptp
+#  - routing
+  vars_files:
+  - roles/svi/vars/main.yml
+  - roles/interface/vars/main.yml

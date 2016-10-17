@@ -1,0 +1,15 @@
+- set_fact:
+#   svi_int: "{{ svi }}"
+   svi_ip: "{{ svi[ansible_hostname].ip }}"
+   hsrp_pri: 
+
+
+  # 
+- name: configure switch virtual interface
+  ios_config:
+    provider: "{{ provider }}"
+    lines:
+    - switchport trunk encap dot1q
+    parents: interface range {{ item }}
+  with_items: "{{  }}"
+

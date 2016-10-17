@@ -1,0 +1,21 @@
+---
+  #
+- name: access ports
+  ios_config:
+    provider: "{{ provider }}"
+    lines:
+    - switchport mode access 
+    - switchport access vlan {{ item.data }}
+    - switchport voice vlan {{ item.voice }}
+    parents: interface range {{ item.range }}
+  with_items: "{{ ports[ansible_hostname] }}"
+  #
+- name: access ports
+  ios_config:
+    provider: "{{ provider }}"
+    lines:
+    - no shutdown 
+    parents: interface range {{ item.range }}
+  with_items: "{{ ports[ansible_hostname] }}"
+
+- pause: seconds=15

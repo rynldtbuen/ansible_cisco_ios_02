@@ -1,0 +1,9 @@
+  # 
+- name: create vlans
+  ios_config:
+    provider: "{{ provider }}"
+    lines:
+    - name {{ item.name }}
+    parents: vlan {{ item.id }}
+  with_items: "{{ vlans }}"
+  tags: vlans

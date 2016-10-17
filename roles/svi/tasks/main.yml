@@ -1,0 +1,20 @@
+---
+  # 
+- name: configure switch virtual interfaces
+  ios_config:
+    provider: "{{ provider }}"
+    lines:
+    - ip add {{ item[ansible_hostname].ip_mask }}
+    - delay 200
+    parents: interface {{ item.int }}
+  with_items:  "{{ svi }}"
+  # 
+- name: no shut
+  ios_config:
+    provider: "{{ provider }}"
+    lines:
+    - no shutdown 
+    parents: interface {{ item.int }}
+  with_items:  "{{ svi }}"
+
+- pause: seconds=15

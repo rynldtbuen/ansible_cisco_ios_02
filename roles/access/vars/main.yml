@@ -1,0 +1,18 @@
+---
+ports:
+ acc_sw_01:
+  - range: "Ethernet1/0 - 3"
+    voice: 15
+    data: 55
+ acc_sw_02:
+  - range: "Ethernet1/0 - 3"
+    voice: 16
+    data: 56
+ acc_sw_03:
+  - range: "Ethernet1/0 - 3"
+    voice: 17
+    data: 57
+ acc_sw_04:
+  - range: "Ethernet1/0 - 3"
+    voice: 18
+    data: 58

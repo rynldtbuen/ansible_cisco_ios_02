@@ -1,0 +1,13 @@
+---
+  #
+- name: hsrp
+  ios_config:
+    provider: "{{ provider }}"
+    lines:
+    - standby 1 ip {{ item.vip }}
+    - standby 1 timer msec 250 msec 750
+    - standby 1 priority {{ item[ansible_hostname].hsrp_pri }}
+    - standby 1 preempt delay minimum 30
+    parents: interface {{ item.int }}
+    match: exact
+  with_items: "{{ svi }}"

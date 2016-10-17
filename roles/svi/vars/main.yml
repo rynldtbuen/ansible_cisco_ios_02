@@ -1,0 +1,82 @@
+---
+svi:
+   - int: vlan15 
+     vip: 192.168.15.254
+     core_sw_01: 
+       ip_mask: "192.168.15.252 255.255.255.0"
+       hsrp_pri: 110
+       stp_role: hsrp_primary
+     core_sw_02:
+       ip_mask: "192.168.15.253 255.255.255.0"
+       hsrp_pri: 90
+       stp_role: secondary
+   - int: vlan16
+     vip: 192.168.16.254
+     core_sw_01:
+       ip_mask: "192.168.16.252 255.255.255.0"
+       hsrp_pri: 110
+       stp_role: hsrp_primary
+     core_sw_02:
+       ip_mask: "192.168.16.253 255.255.255.0"
+       hsrp_pri: 90
+       stp_role: secondary
+   - int: vlan17
+     vip: 192.168.17.254
+     core_sw_01:
+       ip_mask: "192.168.17.252 255.255.255.0"
+       hsrp_pri: 90
+       stp_role: secondary
+     core_sw_02:
+       ip_mask: "192.168.17.253 255.255.255.0"
+       hsrp_pri: 110
+       stp_role: hsrp_primary
+   - int: vlan18     
+     vip: 192.168.18.254
+     core_sw_01:
+       ip_mask: "192.168.18.252 255.255.255.0"
+       hsrp_pri: 90
+       stp_role: secondary
+     core_sw_02:
+       ip_mask: "192.168.18.253 255.255.255.0"
+       hsrp_pri: 110  
+       stp_role: hsrp_primary
+   - int: vlan55
+     vip: 192.168.55.254
+     core_sw_01:
+       ip_mask: "192.168.55.252 255.255.255.0"
+       hsrp_pri: 110
+       stp_role: hsrp_primary
+     core_sw_02:
+       ip_mask: "192.168.55.253 255.255.255.0"
+       hsrp_pri: 90 
+       stp_role: secondary
+   - int: vlan56
+     vip: 192.168.56.254
+     core_sw_01:
+       ip_mask: "192.168.56.252 255.255.255.0"
+       hsrp_pri: 110
+       stp_role: hsrp_primary
+     core_sw_02:
+       ip_mask: "192.168.56.253 255.255.255.0"
+       hsrp_pri: 90
+       stp_role: secondary
+   - int: vlan57
+     vip: 192.168.18.254
+     core_sw_01:
+       ip_mask: "192.168.57.252 255.255.255.0"
+       hsrp_pri: 90
+       stp_role: secondary
+     core_sw_02:
+       ip_mask: "192.168.57.253 255.255.255.0"
+       hsrp_pri: 110
+       stp_role: hsrp_primary
+   - int: vlan58
+     vip: 192.168.58.254
+     core_sw_01:
+       ip_mask: "192.168.58.252 255.255.255.0"
+       hsrp_pri: 90
+       stp_role: secondary
+     core_sw_02:
+       ip_mask: "192.168.58.253 255.255.255.0"
+       hsrp_pri: 110
+       stp_role: hsrp_primary

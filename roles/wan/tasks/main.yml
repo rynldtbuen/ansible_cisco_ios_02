@@ -1,0 +1,50 @@
+---
+  #
+- name: configure inside nat
+  ios_config:
+    provider: "{{ provider }}"
+    lines:
+    - ip nat inside
+    parents: interface {{ item.int }}
+  with_items:  "{{ interfaces[ansible_hostname].ptp }}"
+  #
+- name: configure wan interfaces
+  ios_config:
+    provider: "{{ provider }}"
+    lines:
+    - description {{ item.desc }}
+    - ip address {{ item.ip_mask }}
+    - ip nat outside
+    parents: interface {{ item.int }}
+  with_items:  "{{ interfaces[ansible_hostname].wan_int }}"
+  #
+- name: access list to use in nat
+  ios_config:
+    provider: "{{ provider }}"
+    lines:
+    - permit 10.0.0.0 0.0.63.255 log
+    parents: ip access-list standard NAT
+    match: exact
+  #
+- name: default route
+  ios_config:
+    provider: "{{ provider }}"
+    lines:
+    - ip route 0.0.0.0 0.0.0.0 192.168.91.2
+    match: exact
+  #
+- name: nat
+  ios_config:
+    provider: "{{ provider }}"
+    lines:
+    - ip nat inside source list NAT interface {{ item.int }} overload
+    match: exact
+  with_items: "{{ interfaces[ansible_hostname].wan_int }}"
+  #
+- name: no shut
+  ios_config:
+    provider: "{{ provider }}"
+    lines:
+    - no shutdown
+    parents: interface {{ item.int }}
+  with_items: "{{ interfaces[ansible_hostname].wan_int }}"

@@ -1,0 +1,12 @@
+---
+- name: router configurations
+  hosts: router
+  gather_facts: no
+  connection: local
+  #
+  roles:
+  - interface
+#  - routing
+  vars_files:
+  - roles/svi/vars/main.yml
+  - roles/interface/vars/main.yml

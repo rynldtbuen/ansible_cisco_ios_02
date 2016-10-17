@@ -1,0 +1,54 @@
+---
+interfaces:
+  rtr_01:
+    ptp:
+    - int: "Ethernet0/0"
+      desc: "link to core_sw_01 (e2/2)"
+      ip_mask: "10.0.100.10 255.255.255.252"
+    - int: "Ethernet0/1"
+      desc: "link to core_sw_02 (e2/2"
+      ip_mask: "10.0.100.10 255.255.255.252"
+    wan_int:
+    - int: "Ethernet1/0"
+      desc: "link to isp_1"
+      ip_mask: dhcp
+  rtr_02:
+    ptp:
+    - int: "Ethernet0/0"
+      desc: "link to core_sw_01 (e2/3)"
+      ip_mask: "10.0.100.14 255.255.255.252"
+    - int: "Ethernet0/1" 
+      desc: "link to core_sw_02 (e2/3)"
+      ip_mask: "10.0.100.22 255.255.255.252"
+    wan_int:
+    - int: "Ethernet1/0"
+      desc: "link to isp_2"
+      ip_mask: dhcp
+  core_sw_01:
+    ptp:  
+    - int: "Ethernet2/0"       
+      desc: "link to core_sw_02 (e2/0)"
+      ip_mask: "10.0.100.1 255.255.255.252"
+    - int: "Ethernet2/1"       
+      desc: "link to core_sw_02 (e2/1)"
+      ip_mask: "10.0.100.5 255.255.255.252"
+    - int: "Ethernet2/2"       
+      desc: "link to rtr_01 (e0/0)"
+      ip_mask: "10.0.100.9 255.255.255.252"
+    - int: "Ethernet2/3"       
+      desc: "link to rtr_02 (e0/0)"
+      ip_mask: "10.0.100.13 255.255.255.252"   
+  core_sw_02:
+    ptp:
+    - int: "Ethernet2/0"
+      desc: "link to core_sw_01 (e2/0)"      
+      ip_mask: "10.0.100.2 255.255.255.252"
+    - int: "Ethernet2/1"
+      desc: "link to core_sw_01 (e2/1)"
+      ip_mask: "10.0.100.6 255.255.255.252"
+    - int: "Ethernet2/2"
+      desc: "link to rtr_01 (e0/1)"      
+      ip_mask: "10.0.100.17 255.255.255.252"
+    - int: "Ethernet2/3"
+      desc: "link to rtr_02 (e0/1)"
+      ip_mask: "10.0.100.21 255.255.255.252"

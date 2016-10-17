@@ -1,0 +1,57 @@
+---
+  #
+- hosts: all
+  gather_facts: no
+  connection: local    
+  roles:
+  - role: common
+    tags: common
+  #
+- hosts: switches
+  gather_facts: no
+  connection: local    
+
+  roles:
+  - role: vlans
+    tags: vlans
+  - role: trunk
+    tags: trunk
+  #
+- hosts: access
+  gather_facts: no
+  connection: local    
+  roles:
+  - role: access
+    tags: access
+  #
+- hosts: core
+  gather_facts: no
+  connection: local    
+  roles:
+  - role: svi
+    tags: svi
+  - role: hsrp
+    tags: hsrp
+  vars_files:
+  - roles/svi/vars/main.yml
+  #
+- hosts: layer3
+  gather_facts: no
+  connection: local
+  roles:
+  - role: interface
+    tags: interface
+  - role: routing
+    tags: routing
+  vars_files:
+  - roles/interface/vars/main.yml
+  - roles/svi/vars/main.yml
+  #
+- hosts: router
+  gather_facts: no
+  connection: local
+  roles:
+  - role: wan
+    tags: wan
+  vars_files:
+  - roles/interface/vars/main.yml
